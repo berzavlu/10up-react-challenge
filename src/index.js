@@ -17,11 +17,9 @@ const configTheme = {
 }
 
 root.render(
-  <React.StrictMode>
-    <ConfigProvider theme={configTheme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ConfigProvider>
-  </React.StrictMode>
+  <ConfigProvider theme={configTheme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ConfigProvider>
 )
