@@ -17,6 +17,10 @@ body {
   cursor: pointer;
 }
 
+.cardMovie a {
+  color: inherit;
+}
+
 .cardMovie:hover img {
   transform: scale(1.15)
 }

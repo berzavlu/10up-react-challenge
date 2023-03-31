@@ -1,4 +1,5 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import { Layout as LayoutAnd } from 'antd'
 import Sidebar from './sidebar'
 import Content from './content'
@@ -8,7 +9,7 @@ function Layout(props) {
     <LayoutAnd style={{ minHeight: '100vh' }}>
       <Sidebar />
       <Content>
-        {props.children}
+        <Outlet />
       </Content>
     </LayoutAnd>
   )

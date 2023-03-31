@@ -1,6 +1,7 @@
 import React from 'react'
 import { ConfigProvider } from 'antd'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import App from './App'
 import store from './redux/store'
@@ -17,9 +18,11 @@ const configTheme = {
 }
 
 root.render(
-  <ConfigProvider theme={configTheme}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </ConfigProvider>
+  <BrowserRouter>
+    <ConfigProvider theme={configTheme}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ConfigProvider>
+  </BrowserRouter>
 )
