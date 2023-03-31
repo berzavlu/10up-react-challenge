@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import StarsRating from 'stars-rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovies } from '../../redux/actions/movies'
 import { Col, Divider, Row } from 'antd'
@@ -29,13 +30,17 @@ const Movies = () => {
       <Divider orientation="left">Recently Added</Divider>
       <Row>
         {movies.data.map((movie, i) => 
-          <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={4} key={movie.id}>
-            <div style={{ maxWidth: '320px', padding: '25px' }}>
-              <img style={{ width: '100%' }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-              <h3>{movie.title}</h3>
-              <p>{movie.description}</p>
-            </div>
-          </Col>
+            <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={4} key={movie.id}>
+              <div className='cardMovie'>
+                <div style={{ padding: '15px' }}>
+                  <div className='cardMovie__img'>
+                    <img style={{ width: '100%', height: '320px', objectFit: 'cover' }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                  </div>
+                  <h3>{movie.title}</h3>
+                  <StarsRating edit={false} value={movie.vote_average / 2} count={5} size={24} color2={'#ffd700'} />
+                </div>
+              </div>
+            </Col>
         )}
       </Row>
     </>
