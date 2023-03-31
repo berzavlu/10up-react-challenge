@@ -41,9 +41,8 @@ function Content(props) {
           </Space>
         </Dropdown>
       </Layout.Header>
-      <Layout.Content style={{ margin: '0 16px' }}>
-        <div style={{ height: '16px' }} />
-        <div style={{ padding: 24, minHeight: 360 }}>
+      <Layout.Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+        <div style={{ padding: 24, background: colorBgContainer }}>
           {props.children}
         </div>
       </Layout.Content>
