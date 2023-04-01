@@ -37,3 +37,13 @@ body {
 .cardMovie__img img {
   transition: all 0.4s;
 }
+
+.ant-menu-dark {
+  background-color: #212121 !important;
+}
+.ant-menu-dark a {
+  color: inherit !important;
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background-color: #050505 !important;
+}

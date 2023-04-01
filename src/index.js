@@ -11,8 +11,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 
 const configTheme = {
   token: {
-    colorPrimary: '#32D788',
-    colorText: '#062525',
+    colorPrimary: '#df2b26',
+    colorText: '#303030',
     colorBlack1UP: '#303030',
   },
 }

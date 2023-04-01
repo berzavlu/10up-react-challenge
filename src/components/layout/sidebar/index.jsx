@@ -1,6 +1,7 @@
 import React from 'react'
 import { StarOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme } from 'antd'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 function getItem(label, key, icon, children, path) {
   return {
@@ -8,24 +9,56 @@ function getItem(label, key, icon, children, path) {
     icon,
     children,
     label: (
-      <a href
+      <Link
         to={path}
       >
         {label}
-      </a>
+      </Link>
     ),
   }
 }
 
 
 const items = [
-  getItem('Movies', '/movies', <StarOutlined />, null, '/movies'),
+  getItem('Movies', '/', <StarOutlined />, [
+    getItem(
+      'All Movies',
+      '/movies',
+      <StarOutlined />,
+      null,
+      '/movies'
+    ),
+    getItem(
+      'Add New',
+      '/movies/add-new',
+      <StarOutlined />,
+      null,
+      '/movies/add-new'
+    ),
+  ], null),
+  getItem('Gender', '/gender-movies', <StarOutlined />, null, '/gender-movies'),
 ]
 
 function Sidebar() {
   const {
     token: { colorBlack1UP },
   } = theme.useToken()
+  const params = useParams()
+
+  const location = useLocation()
+
+  const validateChildRoute = () => {
+    if (params?.movieId) {
+      return '/movies'
+    }
+    return location.pathname
+  }
+
+  const getCurrentSelected = () => {
+    return validateChildRoute(location.pathname)
+  }
+
+  console.log('params', params)
 
   const styleLogo = {
     margin: 16,
@@ -42,7 +75,13 @@ function Sidebar() {
       <div style={styleLogo}>
         <img src={logoURL} alt="Logo 10UP" style={{ width: '60px' }} />
       </div>
-      <Menu theme="light" mode="inline" items={items} />
+      <Menu
+        theme="dark"
+        mode="inline"
+        items={items}
+        defaultSelectedKeys={getCurrentSelected()}
+        defaultOpenKeys={['/']}
+      />
     </Layout.Sider>
   )
 }
