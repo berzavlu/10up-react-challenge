@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/layout'
 import Movies from './pages/movies'
 import MovieDetail from './pages/movies/detail'
+import NewMovieForm from './pages/movies/new'
 
 const App = () => {
   return (
@@ -20,6 +21,10 @@ const App = () => {
         <Route
           path="movies/:movieId"
           element={<MovieDetail />}
+        />
+        <Route
+          path="movies/add-new"
+          element={<NewMovieForm />}
         />
       </Route>
       <Route
