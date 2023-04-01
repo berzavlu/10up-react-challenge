@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
-import { Breadcrumb, Button, Card, Col, Row, Space, Tag } from 'antd';
-import { Link, useParams } from 'react-router-dom'
+import { Alert, Breadcrumb, Button, Card, Col, Modal, Row, Space, Tag } from 'antd';
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { fetchMovieDetail, fetchMovieVideo } from '../../redux/actions/movies'
 import StarsRating from 'stars-rating';
 
 const MovieDetail = () => {
   const { movieId } = useParams()
-  const { movieDetail, movieDetailVideo } = useSelector((state) => state.moviesReducer)
+  const { movieDetail, movieDetailVideo, movies } = useSelector((state) => state.moviesReducer)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [modal, contextHolder] = Modal.useModal();
 
   const getMovieData = async () => {
     await dispatch(fetchMovieDetail(movieId))
@@ -18,6 +21,23 @@ const MovieDetail = () => {
   useEffect(() => {
     getMovieData()
   }, [])
+
+  const handleDelete = () => {
+    modal.confirm({
+      title: 'Delete Movie',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Are you sure to delete this movie?',
+      okText: 'Delete',
+      cancelText: 'Cancel',
+      onOk() {
+        console.log('OK');
+      }
+    });
+  }
+
+  const handleEdit = () => {
+    navigate(`/movies/edit/${movieId}`)
+  }
 
   if (movieDetail.data === null || movieDetail.loading) {
     return <div>loading movie detail</div>
@@ -45,10 +65,10 @@ const MovieDetail = () => {
           <br/><br/>
           <Space wrap>
             <b>Actions: </b>
-            <Button type="primary">
+            <Button type="primary" onClick={handleEdit}>
               Edit
             </Button>
-            <Button>Delete</Button>
+            <Button onClick={handleDelete}>Delete</Button>
           </Space>
         </Col>
         <Col span={18}>
@@ -89,6 +109,7 @@ const MovieDetail = () => {
           </Card>
         </Col>
       </Row>
+      {contextHolder}
     </div>
   )
 }

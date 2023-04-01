@@ -4,6 +4,7 @@ import Layout from './components/layout'
 import Movies from './pages/movies'
 import MovieDetail from './pages/movies/detail'
 import NewMovieForm from './pages/movies/new'
+import EditMovieForm from './pages/movies/edit'
 
 const App = () => {
   return (
@@ -25,6 +26,10 @@ const App = () => {
         <Route
           path="movies/add-new"
           element={<NewMovieForm />}
+        />
+        <Route
+          path="movies/edit/:movieId"
+          element={<EditMovieForm />}
         />
       </Route>
       <Route
