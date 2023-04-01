@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Card, Col, Row, Tag } from 'antd';
-import { useParams } from 'react-router-dom'
+import { Breadcrumb, Button, Card, Col, Row, Space, Tag } from 'antd';
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovieDetail, fetchMovieVideo } from '../../redux/actions/movies'
 import StarsRating from 'stars-rating';
@@ -25,12 +25,37 @@ const MovieDetail = () => {
 
   return (
     <div>
+      <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: <Link to='/movies'>Movies</Link>,
+          },
+          {
+            title: movieDetail.data.title,
+          },
+        ]}
+      />
+      <br />
       <Row>
         <Col span={6}>
-          <img style={{ width: '320px' }} src={`https://image.tmdb.org/t/p/w500${movieDetail.data.poster_path}`} alt={movieDetail.data.title} />
+          <img style={{ width: '320px', borderRadius: '5px' }} src={`https://image.tmdb.org/t/p/w500${movieDetail.data.poster_path}`} alt={movieDetail.data.title} />
+          <br/><br/>
+          <Space wrap>
+            <b>Actions: </b>
+            <Button type="primary">
+              Edit
+            </Button>
+            <Button>Delete</Button>
+          </Space>
         </Col>
         <Col span={18}>
-          <Card title={movieDetail.data.title} bordered={false}>
+          <Card title='Information' bordered={true}>
+            <b>Title:</b>
+            <div>{movieDetail.data.title}</div>
+            <br/>
             <b>Description:</b>
             <div>{movieDetail.data.overview}</div>
             <br/>

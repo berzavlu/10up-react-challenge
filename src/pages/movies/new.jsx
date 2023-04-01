@@ -1,9 +1,23 @@
-import { Button, Form, Input, Rate, Select } from 'antd'
+import { Breadcrumb, Button, Form, Input, Rate, Select } from 'antd'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NewMovieForm = () => {
   return (
     <div>
+      <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: <Link to='/movies'>Movies</Link>,
+          },
+          {
+            title: 'Add New',
+          }
+        ]}
+      />
       <h2>Add new Movie</h2>
       <Form
         name="basic"

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import StarsRating from 'stars-rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovies } from '../../redux/actions/movies'
-import { Col, Divider, Row } from 'antd'
+import { Breadcrumb, Col, Divider, Row } from 'antd'
 import { Link } from 'react-router-dom'
 
 const Movies = () => {
@@ -28,6 +28,16 @@ const Movies = () => {
 
   return (
     <>
+      <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: 'Movies',
+          },
+        ]}
+      />
       <Divider orientation="left">Recently Added</Divider>
       <Row>
         {movies.data.map((movie, i) => 
