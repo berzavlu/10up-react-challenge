@@ -19,7 +19,7 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: {
-          ...state.movies,
+          ...initialState.movies,
           loading: true,
         }
       }
@@ -52,7 +52,7 @@ const moviesReducer = (state = initialState, action) => {
         return {
           ...state,
           movieDetail: {
-            ...state.movieDetail,
+            ...initialState.movieDetail,
             loading: true,
           }
         }

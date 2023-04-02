@@ -77,3 +77,26 @@ export const deleteMovie = (id) => async (dispatch) => {
     dispatch({ type: types.MOVIE_DELETE_FINISH })
   }
 }
+
+export const updateMovieDetail = (formData, id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.MOVIE_UPDATE_START })
+    const payload = {
+      title: formData.title,
+      vote_average: formData.rate,
+      poster_path: formData.image,
+      overview: formData.description,
+      genres: formData.genres,
+      youtubeId: formData.youtubeId
+    }
+    const response = await API.put(API_URL + '/movies/update/' + id, payload)
+
+    dispatch({ type: types.MOVIE_UPDATE_SUCCESS })
+    return response.data.data
+  } catch (error) {
+    dispatch({ type: types.MOVIE_UPDATE_FAIL })
+    throw Error(error.response.data.message)
+  } finally {
+    dispatch({ type: types.MOVIE_UPDATE_SUCCESS })
+  }
+}

@@ -28,6 +28,15 @@ const API = {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     }
     return axios.delete(url)
+  },
+  put: (url, params) => {
+    // config header authorization
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    }
+    return axios.put(url, params)
   }
 }
 

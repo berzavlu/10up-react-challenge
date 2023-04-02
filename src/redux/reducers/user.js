@@ -16,7 +16,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: {
-          ...state.user,
+          ...initialState.user,
           loading: true,
         }
       }
