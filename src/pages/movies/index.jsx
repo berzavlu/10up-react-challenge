@@ -2,15 +2,20 @@ import React, { useEffect } from 'react'
 import StarsRating from 'stars-rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovies } from '../../redux/actions/movies'
-import { Breadcrumb, Col, Divider, Row } from 'antd'
-import { Link } from 'react-router-dom'
+import { Breadcrumb, Button, Col, Divider, Empty, Row, Spin } from 'antd'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Movies = () => {
   const { movies } = useSelector((state) => state.moviesReducer)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const getData = () => {
     dispatch(fetchMovies())
+  }
+
+  const goToAddMovie = () => {
+    navigate('/movies/add-new')
   }
 
   
@@ -19,7 +24,54 @@ const Movies = () => {
   }, [])
 
   if (movies.data === null || movies.loading) {
-    return <div>loading movies</div>
+    return (
+      <>
+        <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: 'Movies',
+          },
+        ]}
+      />
+      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Spin size='large' /><br />
+        <span>Loading Movies</span>
+      </div>
+      </>
+    )
+  }
+
+  if (movies.data.length === 0) {
+    return (
+      <>
+        <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: 'Movies',
+          },
+        ]}
+      />
+      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Empty
+          image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+          imageStyle={{ height: 60 }}
+          description={
+            <span>
+              Looks like you don't have added any movies yet.
+            </span>
+          }
+        >
+          <Button type="primary" onClick={goToAddMovie}>Add New Movie</Button>
+        </Empty>
+      </div>
+      </>
+    )
   }
 
   return (
