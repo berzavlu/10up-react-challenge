@@ -60,7 +60,7 @@ const MovieDetail = () => {
       <br />
       <Row>
         <Col span={6}>
-          <img style={{ width: '320px', borderRadius: '5px' }} src={`https://image.tmdb.org/t/p/w500${movieDetail.data.poster_path}`} alt={movieDetail.data.title} />
+          <img style={{ width: '320px', borderRadius: '5px' }} src={movieDetail.data.poster_path} alt={movieDetail.data.title} />
           <br/><br/>
           <Space wrap>
             <b>Actions: </b>

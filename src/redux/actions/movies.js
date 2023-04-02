@@ -19,7 +19,6 @@ export const fetchMovies = () => async (dispatch) => {
   }
 }
 
-
 export const fetchMovieDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: types.MOVIES_FETCH_DETAIL_START })
@@ -35,5 +34,30 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
     dispatch({ type: types.MOVIES_FETCH_DETAIL_FAIL })
   } finally {
     dispatch({ type: types.MOVIES_FETCH_DETAIL_FINISH })
+  }
+}
+
+export const addNewMovie = (formData) => async (dispatch) => {
+  try {
+    dispatch({ type: types.MOVIES_ADD_NEW_START })
+    const payload = {
+      title: formData.title,
+      vote_average: formData.rate,
+      poster_path: formData.image,
+      overview: formData.description,
+      genres: formData.genres,
+      youtubeId: formData.youtubeId
+    }
+    const response = await API.post(API_URL + '/movies/new', payload)
+
+    dispatch({
+      type: types.MOVIES_ADD_NEW_SUCCESS,
+      payload: response.data.data
+    })
+  } catch (error) {
+    console.log(error)
+    dispatch({ type: types.MOVIES_ADD_NEW_FAIL })
+  } finally {
+    dispatch({ type: types.MOVIES_ADD_NEW_FINISH })
   }
 }

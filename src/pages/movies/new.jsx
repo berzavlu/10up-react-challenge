@@ -1,8 +1,17 @@
 import { Breadcrumb, Button, Form, Input, Rate, Select } from 'antd'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { addNewMovie } from '../../redux/actions/movies'
 
 const NewMovieForm = () => {
+  const dispatch = useDispatch()
+
+  const onFinish = (values) => {
+    console.log('values', values)
+    dispatch(addNewMovie(values))
+  }
+
   return (
     <div>
       <Breadcrumb
@@ -24,33 +33,25 @@ const NewMovieForm = () => {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
-        initialValues={{ remember: true }}
         autoComplete="off"
+        onFinish={onFinish}
       >
         <div>Title: </div>
-        <Form.Item
-          name="title"
-        >
+        <Form.Item name="title">
           <Input placeholder="Add title" />
         </Form.Item>
         <div>Image: </div>
-        <Form.Item
-          name="url"
-        >
+        <Form.Item name="image">
           <Input placeholder="Insert URL image" />
         </Form.Item>
         <div>Description:</div>
-        <Form.Item
-          name="description"
-        >
+        <Form.Item name="description">
           <Input.TextArea rows={6} placeholder="Add description" />
         </Form.Item>
         <div>Genre: </div>
-        <Form.Item
-          name="genre"
-        >
+        <Form.Item name="genres">
           <Select
-            placeholder="Select Genre"
+            placeholder="Select Genres"
             mode="multiple"
             allowClear
           >
@@ -60,16 +61,13 @@ const NewMovieForm = () => {
           </Select>
         </Form.Item>
         <div>Rating: </div>
-        <Rate onChange={() => null} value={0} />
-        <br/><br/>
+        <Form.Item name="rate">
+          <Rate />
+        </Form.Item>
         <span>Trailer Video: </span>
-        <Form.Item
-          name="youtube"
-        >
+        <Form.Item name="youtubeId">
           <Input prefix='https://www.youtube.com/watch?v=' placeholder="Youtube ID" />
         </Form.Item>
-
-
         <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Add Movie

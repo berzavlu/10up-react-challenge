@@ -46,10 +46,10 @@ const Movies = () => {
               <Link to={`/movies/${movie._id}`}>
                 <div style={{ padding: '15px' }}>
                   <div className='cardMovie__img'>
-                    <img style={{ width: '100%', height: '320px', objectFit: 'cover' }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                    <img style={{ width: '100%', height: '320px', objectFit: 'cover' }} src={movie.poster_path} alt={movie.title} />
                   </div>
                   <h3>{movie.title}</h3>
-                  <StarsRating edit={false} value={movie.vote_average / 2} count={5} size={24} color2={'#ffd700'} />
+                  <StarsRating edit={false} value={movie.vote_average} count={5} size={24} color2={'#ffd700'} />
                 </div>
               </Link>
             </div>
