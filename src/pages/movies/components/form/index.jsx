@@ -1,5 +1,6 @@
 import { Button, Form, Input, Rate, Select } from 'antd'
 import React from 'react'
+import useWindowSize from '../../../../hooks/useWindowSize'
 import { GENRES } from '../../../../utils/constants'
 
 const rules = {
@@ -50,6 +51,7 @@ const rules = {
 }
 
 const FormVideo = ({ onFinish, loading, initialValues }) => {
+  const { width } = useWindowSize()
   return (
     <Form
       labelCol={{ span: 8 }}
@@ -89,10 +91,10 @@ const FormVideo = ({ onFinish, loading, initialValues }) => {
       <Form.Item name='rate' rules={rules.rate}>
         <Rate />
       </Form.Item>
-
+          {console.log(width)}
       <span>Trailer Video: </span>
       <Form.Item name='youtubeId' rules={rules.youtubeId}>
-        <Input prefix='https://www.youtube.com/watch?v=' placeholder='Youtube ID' />
+        <Input prefix={width > 790 ? 'https://www.youtube.com/watch?v=' : 'https://youtu.be/'} placeholder='Youtube ID' />
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
