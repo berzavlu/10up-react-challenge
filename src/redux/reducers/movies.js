@@ -37,6 +37,7 @@ const moviesReducer = (state = initialState, action) => {
         movies: {
           ...state.movies,
           error: true,
+          data: [],
         }
       }
     case types.MOVIES_FETCH_FINISH:

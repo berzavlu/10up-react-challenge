@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import StarsRating from 'stars-rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovies } from '../../redux/actions/movies'
-import { Breadcrumb, Button, Col, Divider, Empty, Row, Spin } from 'antd'
+import { Breadcrumb, Button, Col, Divider, Empty, Result, Row, Spin } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Movies = () => {
@@ -39,6 +39,31 @@ const Movies = () => {
       <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Spin size='large' /><br />
         <span>Loading Movies</span>
+      </div>
+      </>
+    )
+  }
+
+  if (movies.error) {
+    return (
+      <>
+        <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: 'Movies',
+          },
+        ]}
+      />
+      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Result
+          status="error"
+          title="An error occurred"
+          subTitle="Sorry, something went wrong with the server."
+        />
+
       </div>
       </>
     )
