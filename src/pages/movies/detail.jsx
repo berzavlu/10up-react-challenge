@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { fetchMovieDetail, deleteMovie } from '../../redux/actions/movies'
 import StarsRating from 'stars-rating';
+import { GENRES } from '../../utils/constants';
 
 const MovieDetail = () => {
   const { movieId } = useParams()
@@ -136,9 +137,9 @@ const MovieDetail = () => {
             <br/>
             <b>Genres:</b>{' '}
             <div>
-              {movieDetail.data.genres.map((genre) => (
-                <Tag key={genre.id}>{genre.name}</Tag>
-              ))}
+            {GENRES.filter(x => movieDetail.data.genres.some(y => y === x.id)).map((genre) => (
+              <Tag key={genre.id}>{genre.name}{console.log(genre)}</Tag>
+            ))}
             </div>
             <br/>
             <b>Rating:</b>

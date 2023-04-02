@@ -1,8 +1,9 @@
-import { Breadcrumb, Button, Form, Input, notification, Rate, Result, Select, Spin } from 'antd'
+import { Breadcrumb, notification, Result, Spin } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { fetchMovieDetail, updateMovieDetail } from '../../redux/actions/movies'
+import FormVideo from './components/form'
 
 const EditMovieForm = () => {
   const [loading, setLoading] = useState(false)
@@ -90,6 +91,15 @@ const EditMovieForm = () => {
     )
   }
 
+  const initialValues = {
+    title: movieDetail.data.title,
+    image: movieDetail.data.poster_path,
+    description: movieDetail.data.overview,
+    genres: movieDetail.data.genres,
+    rate: movieDetail.data.vote_average,
+    youtubeId: movieDetail.data.youtubeId,
+  }
+
   return (
     <div>
       <Breadcrumb
@@ -106,59 +116,7 @@ const EditMovieForm = () => {
         ]}
       />
       <h2>Edit Movie</h2>
-      <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
-        initialValues={{
-          title: movieDetail.data.title,
-          image: movieDetail.data.poster_path,
-          description: movieDetail.data.overview,
-          rate: movieDetail.data.vote_average,
-          youtubeId: movieDetail.data.youtubeId,
-        }}
-        autoComplete="off"
-        onFinish={onFinish}
-      >
-        <div>Title: </div>
-        <Form.Item name="title">
-          <Input placeholder="Add title" />
-        </Form.Item>
-        <div>Image: </div>
-        <Form.Item name="image">
-          <Input placeholder="Insert URL image" />
-        </Form.Item>
-        <div>Description:</div>
-        <Form.Item name="description">
-          <Input.TextArea rows={6} placeholder="Add description" />
-        </Form.Item>
-        <div>Genre: </div>
-        <Form.Item name="genres">
-          <Select
-            placeholder="Select Genres"
-            mode="multiple"
-            allowClear
-          >
-            <Select.Option value="male">male</Select.Option>
-            <Select.Option value="female">female</Select.Option>
-            <Select.Option value="other">other</Select.Option>
-          </Select>
-        </Form.Item>
-        <div>Rating: </div>
-        <Form.Item name="rate">
-          <Rate />
-        </Form.Item>
-        <span>Trailer Video: </span>
-        <Form.Item name="youtubeId">
-          <Input prefix='https://www.youtube.com/watch?v=' placeholder="Youtube ID" />
-        </Form.Item>
-        <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Update Movie
-          </Button>
-        </Form.Item>
-      </Form>
+      <FormVideo onFinish={onFinish} loading={loading} initialValues={initialValues} />
     </div>
   )
 }
