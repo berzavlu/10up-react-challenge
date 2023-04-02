@@ -4,23 +4,34 @@ import {
   Dropdown,
   Layout,
   Menu,
+  notification,
   Space,
   theme
 } from 'antd'
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
+import { UserOutlined, LogoutOutlined, CaretDownFilled } from '@ant-design/icons'
+import { useDispatch } from 'react-redux'
+import { doLogout } from '../../../redux/actions/user'
+import { useNavigate } from 'react-router-dom'
 
 function Content(props) {
   const { token: { colorBgContainer } } = theme.useToken()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onExit = () => {
-    console.log('exit app')
+    dispatch(doLogout())
+    navigate('/login')
+    notification({
+      message: 'Logout',
+      description: 'Logout successfully'
+    })
   }
 
   const menu = (
     <Menu style={{ marginRight: 1 }}>
       <Menu.Item onClick={onExit}>
         <LogoutOutlined />
-        <span style={{ marginLeft: '10px' }}>Salir</span>
+        <span style={{ marginLeft: '10px' }}>Exit</span>
       </Menu.Item>
     </Menu>
   )
@@ -37,7 +48,7 @@ function Content(props) {
         <Dropdown overlay={menu} arrow placement="bottomRight" trigger={['click']}>
           <Space style={{ cursor: 'pointer' }}>
             <Avatar icon={<UserOutlined />} />
-            <div>Jhon Doe</div>
+            <div>Options <CaretDownFilled /></div>
           </Space>
         </Dropdown>
       </Layout.Header>

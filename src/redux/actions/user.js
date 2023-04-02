@@ -25,3 +25,8 @@ export const doLogin = ({ email, password }) => async (dispatch) => {
     dispatch({ type: types.USER_LOGIN_FINISH })
   }
 }
+
+export const doLogout = () => (dispatch) => {
+  dispatch({ type: types.USER_LOGOUT_SUCCESS })
+  localStorage.removeItem('token')
+}

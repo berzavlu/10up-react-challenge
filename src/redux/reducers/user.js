@@ -44,6 +44,8 @@ const userReducer = (state = initialState, action) => {
           loading: false,
         }
       }
+    case types.USER_LOGOUT_SUCCESS:
+      return initialState
   default:
     return state
   }
