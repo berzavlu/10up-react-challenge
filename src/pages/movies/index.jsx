@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import StarsRating from 'stars-rating'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMovies } from '../../redux/actions/movies'
-import { Breadcrumb, Button, Col, Divider, Empty, Result, Row, Spin } from 'antd'
+import { Breadcrumb, Button, Col, Divider, Empty, Result, Row, Spin, Rate } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Movies = () => {
@@ -122,7 +121,7 @@ const Movies = () => {
                     <img style={{ width: '100%', height: '320px', objectFit: 'cover' }} src={movie.poster_path} alt={movie.title} />
                   </div>
                   <h3>{movie.title}</h3>
-                  <StarsRating edit={false} value={movie.vote_average} count={5} size={24} color2={'#ffd700'} />
+                  <Rate value={movie.vote_average} disabled />
                 </div>
               </Link>
             </div>

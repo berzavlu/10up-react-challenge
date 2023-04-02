@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
-import { Breadcrumb, Button, Card, Col, Modal, Result, Row, Space, Spin, Tag } from 'antd';
+import { Breadcrumb, Button, Card, Col, Modal, Rate, Result, Row, Space, Spin, Tag } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { fetchMovieDetail, deleteMovie } from '../../redux/actions/movies'
-import StarsRating from 'stars-rating';
 import { GENRES } from '../../utils/constants';
 
 const MovieDetail = () => {
@@ -142,8 +141,9 @@ const MovieDetail = () => {
             ))}
             </div>
             <br/>
-            <b>Rating:</b>
-            <StarsRating edit={false} value={movieDetail.data.vote_average} count={5} size={24} color2={'#ffd700'} />
+            <b>Rating:</b> <br />
+            <Rate value={movieDetail.data.vote_average} disabled />
+            <br/>
             <br/>
             <b>Trailer</b>
             <br/>
