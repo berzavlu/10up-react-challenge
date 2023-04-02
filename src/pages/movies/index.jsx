@@ -41,9 +41,9 @@ const Movies = () => {
       <Divider orientation="left">Recently Added</Divider>
       <Row>
         {movies.data.map((movie, i) => 
-          <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={4} key={movie.id}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={6} xxl={4} key={movie._id}>
             <div className='cardMovie'>
-              <Link to={`/movies/${movie.id}`}>
+              <Link to={`/movies/${movie._id}`}>
                 <div style={{ padding: '15px' }}>
                   <div className='cardMovie__img'>
                     <img style={{ width: '100%', height: '320px', objectFit: 'cover' }} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />

@@ -11,11 +11,6 @@ const initialState = {
     loading: false,
     error: false,
   },
-  movieDetailVideo: {
-    data: null,
-    loading: false,
-    error: false,
-  },
 }
 
 const moviesReducer = (state = initialState, action) => {
@@ -81,38 +76,6 @@ const moviesReducer = (state = initialState, action) => {
           ...state,
           movieDetail: {
             ...state.movieDetail,
-            loading: false,
-          }
-        }
-      case types.MOVIES_FETCH_DETAIL_VIDEO_START:
-        return {
-          ...state,
-          movieDetailVideo: {
-            ...state.movieDetailVideo,
-            loading: true,
-          }
-        }
-      case types.MOVIES_FETCH_DETAIL_VIDEO_SUCCESS:
-        return {
-          ...state,
-          movieDetailVideo: {
-            ...state.movieDetailVideo,
-            data: action.payload,
-          }
-        }
-      case types.MOVIES_FETCH_DETAIL_VIDEO_FAIL:
-        return {
-          ...state,
-          movieDetailVideo: {
-            ...state.movieDetailVideo,
-            error: true,
-          }
-        }
-      case types.MOVIES_FETCH_DETAIL_VIDEO_FINISH:
-        return {
-          ...state,
-          movieDetailVideo: {
-            ...state.movieDetailVideo,
             loading: false,
           }
         }

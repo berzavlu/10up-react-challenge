@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react'
-import { Alert, Breadcrumb, Button, Card, Col, Modal, Row, Space, Tag } from 'antd';
+import { Breadcrumb, Button, Card, Col, Modal, Row, Space, Tag } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { fetchMovieDetail, fetchMovieVideo } from '../../redux/actions/movies'
+import { fetchMovieDetail } from '../../redux/actions/movies'
 import StarsRating from 'stars-rating';
 
 const MovieDetail = () => {
   const { movieId } = useParams()
-  const { movieDetail, movieDetailVideo, movies } = useSelector((state) => state.moviesReducer)
+  const { movieDetail } = useSelector((state) => state.moviesReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [modal, contextHolder] = Modal.useModal();
 
   const getMovieData = async () => {
     await dispatch(fetchMovieDetail(movieId))
-    await dispatch(fetchMovieVideo(movieId))
   }
 
   useEffect(() => {
@@ -90,22 +89,16 @@ const MovieDetail = () => {
             <StarsRating edit={false} value={movieDetail.data.vote_average / 2} count={5} size={24} color2={'#ffd700'} />
             <br/>
             <b>Trailer</b>
-            {(movieDetail.data === null || movieDetail.loading ? <div>Loading...</div> : (
-              <div>
-                {movieDetailVideo.data?.length === 0 ? <div>Trailer not found</div> : (
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${movieDetailVideo.data?.[0].key}`}
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                  />
-                )}
-              </div>
-            ))}
-
+            <br/>
+              <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${movieDetail.data.youtubeId}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              />
           </Card>
         </Col>
       </Row>
