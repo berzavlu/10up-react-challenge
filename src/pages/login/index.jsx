@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, notification } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux'
 import { doLogin } from '../../redux/actions/user'
@@ -15,6 +15,10 @@ function Login() {
       setLoading(true)
       await dispatch(doLogin(values))
       navigate('/movies')
+      notification.success({
+        message: 'Login',
+        description: 'Login successfully'
+      })
     } catch (error) {
       setLoading(false)
     }
