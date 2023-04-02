@@ -91,7 +91,6 @@ const FormVideo = ({ onFinish, loading, initialValues }) => {
       <Form.Item name='rate' rules={rules.rate}>
         <Rate />
       </Form.Item>
-          {console.log(width)}
       <span>Trailer Video: </span>
       <Form.Item name='youtubeId' rules={rules.youtubeId}>
         <Input prefix={width > 790 ? 'https://www.youtube.com/watch?v=' : 'https://youtu.be/'} placeholder='Youtube ID' />

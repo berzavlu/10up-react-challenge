@@ -57,8 +57,6 @@ function Sidebar() {
     return validateChildRoute(location.pathname)
   }
 
-  console.log('params', params)
-
   const styleLogo = {
     margin: 16,
     marginBottom: 36,

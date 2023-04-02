@@ -12,8 +12,8 @@ export const fetchMovies = () => async (dispatch) => {
       payload: response.data.data
     })
   } catch (error) {
-    console.log(error)
     dispatch({ type: types.MOVIES_FETCH_FAIL })
+    throw Error(error.response.data.message)
   } finally {
     dispatch({ type: types.MOVIES_FETCH_FINISH })
   }
@@ -30,8 +30,8 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
       payload: response.data.data
     })
   } catch (error) {
-    console.log(error)
     dispatch({ type: types.MOVIES_FETCH_DETAIL_FAIL })
+    throw Error(error.response.data.message)
   } finally {
     dispatch({ type: types.MOVIES_FETCH_DETAIL_FINISH })
   }

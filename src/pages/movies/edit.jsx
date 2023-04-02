@@ -17,7 +17,6 @@ const EditMovieForm = () => {
   }
 
   const onFinish = async (values) => {
-    console.log('values', values)
     try {
       setLoading(true)
       await dispatch(updateMovieDetail(values, movieId))
@@ -27,7 +26,6 @@ const EditMovieForm = () => {
       })
       navigate('/movies/' + movieId)
     } catch (error) {
-      console.log('error', error)
       setLoading(false)
       notification.error({
         message: 'Error',
