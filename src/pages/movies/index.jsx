@@ -15,12 +15,8 @@ const Movies = () => {
 
   
   useEffect(() => {
-    if (movies.data === null) {
-      getData()
-    }
-  }, [movies.data])
-
-  console.log(movies.data)
+    getData()
+  }, [])
 
   if (movies.data === null || movies.loading) {
     return <div>loading movies</div>

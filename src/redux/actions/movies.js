@@ -61,3 +61,21 @@ export const addNewMovie = (formData) => async (dispatch) => {
     dispatch({ type: types.MOVIES_ADD_NEW_FINISH })
   }
 }
+
+export const deleteMovie = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.MOVIE_DELETE_START })
+    const response = await API.delete(API_URL + '/movies/delete/' + id)
+
+    dispatch({
+      type: types.MOVIE_DELETE_SUCCESS,
+      payload: response.data.data
+    })
+  } catch (error) {
+    console.log(error)
+    dispatch({ type: types.MOVIE_DELETE_FAIL })
+    throw Error(error.response.data.message)
+  } finally {
+    dispatch({ type: types.MOVIE_DELETE_FINISH })
+  }
+}

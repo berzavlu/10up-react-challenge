@@ -3,7 +3,7 @@ import { Breadcrumb, Button, Card, Col, Modal, Row, Space, Tag } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { fetchMovieDetail } from '../../redux/actions/movies'
+import { fetchMovieDetail, deleteMovie } from '../../redux/actions/movies'
 import StarsRating from 'stars-rating';
 
 const MovieDetail = () => {
@@ -11,10 +11,19 @@ const MovieDetail = () => {
   const { movieDetail } = useSelector((state) => state.moviesReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [modal, contextHolder] = Modal.useModal();
+  const [modal, contextHolder] = Modal.useModal()
 
   const getMovieData = async () => {
     await dispatch(fetchMovieDetail(movieId))
+  }
+
+  const onDelete = async () => {
+    try {
+      await dispatch(deleteMovie(movieId))
+      navigate('/movies')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -28,9 +37,8 @@ const MovieDetail = () => {
       content: 'Are you sure to delete this movie?',
       okText: 'Delete',
       cancelText: 'Cancel',
-      onOk() {
-        console.log('OK');
-      }
+      onOk: async () => onDelete(),
+      onCancel() {},
     });
   }
 
