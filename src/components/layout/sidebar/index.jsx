@@ -36,7 +36,6 @@ const items = [
       '/movies/add-new'
     ),
   ], null),
-  getItem('Genre', '/genre-movies', <StarOutlined />, null, '/genre-movies'),
 ]
 
 function Sidebar() {
