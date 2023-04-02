@@ -50,13 +50,11 @@ export const addNewMovie = (formData) => async (dispatch) => {
     }
     const response = await API.post(API_URL + '/movies/new', payload)
 
-    dispatch({
-      type: types.MOVIES_ADD_NEW_SUCCESS,
-      payload: response.data.data
-    })
+    dispatch({ type: types.MOVIES_ADD_NEW_SUCCESS })
+    return response.data.data
   } catch (error) {
-    console.log(error)
     dispatch({ type: types.MOVIES_ADD_NEW_FAIL })
+    throw Error(error.response.data.message)
   } finally {
     dispatch({ type: types.MOVIES_ADD_NEW_FINISH })
   }

@@ -1,15 +1,25 @@
-import { Breadcrumb, Button, Form, Input, Rate, Select } from 'antd'
+import { Breadcrumb, Button, Form, Input, Rate, Select, notification } from 'antd'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addNewMovie } from '../../redux/actions/movies'
 
 const NewMovieForm = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log('values', values)
-    dispatch(addNewMovie(values))
+    try {
+      const data = await dispatch(addNewMovie(values))
+      notification.success({
+        message: 'Success',
+        description: 'Movie has been added'
+      })
+      navigate('/movies/' + data.insertedId)
+    } catch (error) {
+      console.log('error', error)      
+    }
   }
 
   return (
