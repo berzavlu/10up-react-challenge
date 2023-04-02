@@ -14,6 +14,10 @@ const rules = {
       required: true,
       message: 'Image URL is required',
     },
+    {
+      type: 'url',
+      message: 'Image URL is not valid',
+    }
   ],
   description: [
     {
@@ -37,6 +41,10 @@ const rules = {
     {
       required: true,
       message: 'Youtube ID is required',
+    },
+    {
+      pattern: /^([a-zA-Z0-9_-]){11}$/,
+      message: 'Youtube ID is not valid',
     }
   ]
 }
