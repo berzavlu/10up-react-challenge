@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Breadcrumb, Button, Card, Col, Modal, Rate, Result, Row, Space, Spin, Tag } from 'antd';
+import { Breadcrumb, Button, Card, Col, Modal, notification, Rate, Result, Row, Space, Spin, Tag } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -22,7 +22,10 @@ const MovieDetail = () => {
       await dispatch(deleteMovie(movieId))
       navigate('/movies')
     } catch (error) {
-      console.log(error)
+      notification.error({
+        message: 'Error',
+        description: 'Something went wrong when trying to delete the movie.',
+      })
     }
   }
 
@@ -141,7 +144,7 @@ const MovieDetail = () => {
             <b>Genres:</b>{' '}
             <div>
             {GENRES.filter(x => movieDetail.data.genres.some(y => y === x.id)).map((genre) => (
-              <Tag key={genre.id}>{genre.name}{console.log(genre)}</Tag>
+              <Tag key={genre.id}>{genre.name}</Tag>
             ))}
             </div>
             <br/>

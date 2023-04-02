@@ -70,7 +70,6 @@ export const deleteMovie = (id) => async (dispatch) => {
       payload: response.data.data
     })
   } catch (error) {
-    console.log(error)
     dispatch({ type: types.MOVIE_DELETE_FAIL })
     throw Error(error.response.data.message)
   } finally {
