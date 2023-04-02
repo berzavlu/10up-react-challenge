@@ -142,7 +142,7 @@ const MovieDetail = () => {
             </div>
             <br/>
             <b>Rating:</b>
-            <StarsRating edit={false} value={movieDetail.data.vote_average / 2} count={5} size={24} color2={'#ffd700'} />
+            <StarsRating edit={false} value={movieDetail.data.vote_average} count={5} size={24} color2={'#ffd700'} />
             <br/>
             <b>Trailer</b>
             <br/>
