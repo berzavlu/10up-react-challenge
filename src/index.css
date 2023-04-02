@@ -71,3 +71,18 @@ body {
 .login-form-button {
   width: 100%;
 }
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 560px;
+  height: 100%;
+  max-height: 315px;
+}

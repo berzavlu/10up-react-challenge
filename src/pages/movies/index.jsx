@@ -35,7 +35,7 @@ const Movies = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Spin size='large' /><br />
         <span>Loading Movies</span>
       </div>
@@ -56,7 +56,7 @@ const Movies = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Result
           status="error"
           title="An error occurred"
@@ -81,7 +81,7 @@ const Movies = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Empty
           image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
           imageStyle={{ height: 60 }}

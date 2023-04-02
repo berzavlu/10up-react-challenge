@@ -53,7 +53,7 @@ function Content(props) {
         </Dropdown>
       </Layout.Header>
       <Layout.Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-        <div style={{ padding: 24, background: colorBgContainer, height: 'calc(100vh - (64px + 89px))' }}>
+        <div style={{ padding: 24, background: colorBgContainer, minHeight: 'calc(100vh - (64px + 89px))' }}>
           {props.children}
         </div>
       </Layout.Content>

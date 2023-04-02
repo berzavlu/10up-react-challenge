@@ -56,7 +56,7 @@ const EditMovieForm = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Spin size='large' /><br />
         <span>Loading Movie detail</span>
       </div>
@@ -80,7 +80,7 @@ const EditMovieForm = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Result
           status="error"
           title="An error occurred"

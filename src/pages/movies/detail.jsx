@@ -62,7 +62,7 @@ const MovieDetail = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Spin size='large' /><br />
         <span>Loading Movie detail</span>
       </div>
@@ -86,7 +86,7 @@ const MovieDetail = () => {
           },
         ]}
       />
-      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div style={{ height: 'calc(100vh - 223px)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         <Result
           status="error"
           title="An error occurred"
@@ -115,18 +115,22 @@ const MovieDetail = () => {
       />
       <br />
       <Row>
-        <Col span={6}>
-          <img style={{ width: '320px', borderRadius: '5px' }} src={movieDetail.data.poster_path} alt={movieDetail.data.title} />
+        <Col xs={24} md={6} style={{ paddingRight: '15px' }}>
+          <img style={{ width: '100%', borderRadius: '5px' }} src={movieDetail.data.poster_path} alt={movieDetail.data.title} />
           <br/><br/>
-          <Space wrap>
-            <b>Actions: </b>
-            <Button type="primary" onClick={handleEdit}>
-              Edit
-            </Button>
-            <Button onClick={handleDelete}>Delete</Button>
-          </Space>
+            <div style={{ paddingBottom: '5px' }}>
+              <b>Actions: </b>
+            </div>
+            <div style={{ paddingBottom: '15px' }}>
+              <Space wrap>
+                <Button type="primary" onClick={handleEdit}>
+                  Edit
+                </Button>
+                <Button onClick={handleDelete}>Delete</Button>
+              </Space>
+            </div>
         </Col>
-        <Col span={18}>
+        <Col xs={24} md={18}>
           <Card title='Information' bordered={true}>
             <b>Title:</b>
             <div>{movieDetail.data.title}</div>
@@ -147,6 +151,7 @@ const MovieDetail = () => {
             <br/>
             <b>Trailer</b>
             <br/>
+            <div class="video-container">
               <iframe
                 width="560"
                 height="315"
@@ -156,6 +161,7 @@ const MovieDetail = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               />
+            </div>
           </Card>
         </Col>
       </Row>
