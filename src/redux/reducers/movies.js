@@ -69,6 +69,7 @@ const moviesReducer = (state = initialState, action) => {
           movieDetail: {
             ...state.movieDetail,
             error: true,
+            data: {},
           }
         }
       case types.MOVIES_FETCH_DETAIL_FINISH:

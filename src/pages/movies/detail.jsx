@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Breadcrumb, Button, Card, Col, Modal, Row, Space, Tag } from 'antd';
+import { Breadcrumb, Button, Card, Col, Modal, Result, Row, Space, Spin, Tag } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -47,7 +47,55 @@ const MovieDetail = () => {
   }
 
   if (movieDetail.data === null || movieDetail.loading) {
-    return <div>loading movie detail</div>
+    return (
+      <>
+        <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: <Link to='/movies'>Movies</Link>,
+          },
+          {
+            title: 'Detail',
+          },
+        ]}
+      />
+      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Spin size='large' /><br />
+        <span>Loading Movie detail</span>
+      </div>
+      </>
+    )
+  }
+
+  if (movieDetail.error) {
+    return (
+      <>
+        <Breadcrumb
+        items={[
+          {
+            title: 'Home',
+          },
+          {
+            title: <Link to='/movies'>Movies</Link>,
+          },
+          {
+            title: 'Detail',
+          },
+        ]}
+      />
+      <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+        <Result
+          status="error"
+          title="An error occurred"
+          subTitle="Movie detail not found or something went wrong with the server."
+        />
+
+      </div>
+      </>
+    )
   }
 
   return (
@@ -61,7 +109,7 @@ const MovieDetail = () => {
             title: <Link to='/movies'>Movies</Link>,
           },
           {
-            title: movieDetail.data.title,
+            title: 'Detail',
           },
         ]}
       />
