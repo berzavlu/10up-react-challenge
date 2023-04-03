@@ -1,5 +1,4 @@
 import API from '../../utils/api'
-import { API_URL } from '../../utils/constants'
 import * as types from '../types/user'
 
 export const doLogin = ({ email, password }) => async (dispatch) => {
@@ -9,7 +8,7 @@ export const doLogin = ({ email, password }) => async (dispatch) => {
       email,
       password
     }
-    const response = await API.post(API_URL + '/user/login', payload)
+    const response = await API.post('/user/login', payload)
     localStorage.setItem('token', response.data.data.token)
     dispatch({
       type: types.USER_LOGIN_SUCCESS,

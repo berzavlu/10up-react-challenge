@@ -21,6 +21,10 @@ const MovieDetail = () => {
     try {
       await dispatch(deleteMovie(movieId))
       navigate('/movies')
+      notification.success({
+        message: 'Success',
+        description: 'Movie has been deleted successfully.',
+      })
     } catch (error) {
       notification.error({
         message: 'Error',
@@ -41,7 +45,6 @@ const MovieDetail = () => {
       okText: 'Delete',
       cancelText: 'Cancel',
       onOk: async () => onDelete(),
-      onCancel() {},
     });
   }
 

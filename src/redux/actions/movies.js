@@ -1,12 +1,11 @@
 import API from '../../utils/api'
-import { API_URL } from '../../utils/constants'
 import * as types from '../types/movies'
 
 export const fetchMovies = () => async (dispatch) => {
   try {
     dispatch({ type: types.MOVIES_FETCH_START })
 
-    const response = await API.get(API_URL + '/movies/list')
+    const response = await API.get('/movies/list')
     dispatch({
       type: types.MOVIES_FETCH_SUCCESS,
       payload: response.data.data
@@ -23,7 +22,7 @@ export const fetchMovieDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: types.MOVIES_FETCH_DETAIL_START })
 
-    const response = await API.get(API_URL + '/movies/' + id)
+    const response = await API.get('/movies/' + id)
 
     dispatch({
       type: types.MOVIES_FETCH_DETAIL_SUCCESS,
@@ -48,7 +47,7 @@ export const addNewMovie = (formData) => async (dispatch) => {
       genres: formData.genres,
       youtubeId: formData.youtubeId
     }
-    const response = await API.post(API_URL + '/movies/new', payload)
+    const response = await API.post('/movies/new', payload)
 
     dispatch({ type: types.MOVIES_ADD_NEW_SUCCESS })
     return response.data.data
@@ -63,7 +62,7 @@ export const addNewMovie = (formData) => async (dispatch) => {
 export const deleteMovie = (id) => async (dispatch) => {
   try {
     dispatch({ type: types.MOVIE_DELETE_START })
-    const response = await API.delete(API_URL + '/movies/delete/' + id)
+    const response = await API.delete('/movies/delete/' + id)
 
     dispatch({
       type: types.MOVIE_DELETE_SUCCESS,
@@ -88,7 +87,7 @@ export const updateMovieDetail = (formData, id) => async (dispatch) => {
       genres: formData.genres,
       youtubeId: formData.youtubeId
     }
-    const response = await API.put(API_URL + '/movies/update/' + id, payload)
+    const response = await API.put('/movies/update/' + id, payload)
 
     dispatch({ type: types.MOVIE_UPDATE_SUCCESS })
     return response.data.data
