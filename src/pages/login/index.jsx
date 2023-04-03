@@ -46,7 +46,7 @@ function Login() {
               },
             ]}
           >
-            <Input type='email' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+            <Input data-testid="email-input" type='email' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -61,6 +61,7 @@ function Login() {
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
+              data-testid="password-input"
             />
           </Form.Item>
 

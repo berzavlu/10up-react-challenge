@@ -63,22 +63,22 @@ const FormVideo = ({ onFinish, loading, initialValues }) => {
     >
       <div>Title: </div>
       <Form.Item name='title' rules={rules.title}>
-        <Input placeholder='Add title' />
+        <Input data-testid="title-input" placeholder='Add title' />
       </Form.Item>
 
       <div>Image: </div>
       <Form.Item name='image' rules={rules.image}>
-        <Input placeholder='Insert URL image' />
+        <Input data-testid="image-input" placeholder='Insert URL image' />
       </Form.Item>
 
       <div>Description:</div>
       <Form.Item name='description' rules={rules.description}>
-        <Input.TextArea rows={6} placeholder='Add description' />
+        <Input.TextArea data-testid="description-input" rows={6} placeholder='Add description' />
       </Form.Item>
 
       <div>Genre: </div>
       <Form.Item name='genres' rules={rules.genres}>
-        <Select placeholder='Select Genres' mode='multiple' allowClear>
+        <Select data-testid="genres-input" placeholder='Select Genres' mode='multiple' allowClear>
           {GENRES.map((genre) => (
             <Select.Option key={genre.id} value={genre.id}>
               {genre.name}
@@ -88,12 +88,12 @@ const FormVideo = ({ onFinish, loading, initialValues }) => {
       </Form.Item>
 
       <div>Rating: </div>
-      <Form.Item name='rate' rules={rules.rate}>
+      <Form.Item data-testid="rate-input" name='rate' rules={rules.rate}>
         <Rate />
       </Form.Item>
       <span>Trailer Video: </span>
       <Form.Item name='youtubeId' rules={rules.youtubeId}>
-        <Input prefix={width > 790 ? 'https://www.youtube.com/watch?v=' : 'https://youtu.be/'} placeholder='Youtube ID' />
+        <Input data-testid="youtubeId-input" prefix={width > 790 ? 'https://www.youtube.com/watch?v=' : 'https://youtu.be/'} placeholder='Youtube ID' />
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
