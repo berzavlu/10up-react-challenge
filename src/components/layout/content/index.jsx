@@ -21,7 +21,7 @@ function Content(props) {
   const onExit = () => {
     dispatch(doLogout())
     navigate('/login')
-    notification({
+    notification.success({
       message: 'Logout',
       description: 'Logout successfully'
     })

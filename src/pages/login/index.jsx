@@ -20,6 +20,10 @@ function Login() {
         description: 'Login successfully'
       })
     } catch (error) {
+      notification.error({
+        message: 'Login',
+        description: error.message
+      })
       setLoading(false)
     }
   }
@@ -38,11 +42,11 @@ function Login() {
             rules={[
               {
                 required: true,
-                message: 'Please input your Username!',
+                message: 'Please input your email!',
               },
             ]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+            <Input type='email' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
           </Form.Item>
           <Form.Item
             name="password"
